@@ -11,7 +11,9 @@ import SwiftUI
 struct COVID_CombineApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                HomeView()
+            }
         }
     }
 }
