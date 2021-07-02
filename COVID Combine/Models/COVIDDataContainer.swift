@@ -45,25 +45,6 @@ struct COVIDDataContainer: Decodable {
           case totalNumberOfRecoveredCasesToDate = "total_number_of_recovered_cases_to_date"
           case totalNumberOfPositiveCasesToDate = "total_number_of_positive_cases_to_date"
         }
-          
-          init() {
-              self.numberOfNewPositiveCasesInLast24Hrs = 0
-              self.totalNumberOfDeathsToDate = 0
-              self.totalNumberOfActiveCasesUndergoingTreatmentToDate = 0
-              self.numberOfNewAcuteHospitalAdmissionsInLast24Hrs = 0
-              self.numberOfNewTestsInLast24Hrs = 0
-              self.totalNumberOfVaccineDosesAdministeredInLast24Hrs = 0
-              self.totalNumberOfAcuteCasesUnderHospitalTreatment = 0
-              self.totalNumberOfCasesUnderIcuTreatment = 0
-              self.numberOfNewIcuAdmissionsInLast24Hrs = 0
-              self.totalNumberOfVaccineDosesAdministeredSinceStart = ""
-              self.numberOfNewDeathsInLast24Hrs = 0
-              self.totalNumberOfTestsToDate = 0
-              self.date = ""
-              self.numberOfNewRecoveredCasesInLast24Hrs = 0
-              self.totalNumberOfRecoveredCasesToDate = 0
-              self.totalNumberOfPositiveCasesToDate = 0
-          }
       }
 
       let datasetid: String
@@ -83,5 +64,26 @@ struct COVIDDataContainer: Decodable {
 
     private enum CodingKeys: String, CodingKey {
       case records
+    }
+}
+
+extension COVIDDataContainer.Records.Fields {
+    init() {
+        self.numberOfNewPositiveCasesInLast24Hrs = 0
+        self.totalNumberOfDeathsToDate = 0
+        self.totalNumberOfActiveCasesUndergoingTreatmentToDate = 0
+        self.numberOfNewAcuteHospitalAdmissionsInLast24Hrs = 0
+        self.numberOfNewTestsInLast24Hrs = 0
+        self.totalNumberOfVaccineDosesAdministeredInLast24Hrs = 0
+        self.totalNumberOfAcuteCasesUnderHospitalTreatment = 0
+        self.totalNumberOfCasesUnderIcuTreatment = 0
+        self.numberOfNewIcuAdmissionsInLast24Hrs = 0
+        self.totalNumberOfVaccineDosesAdministeredSinceStart = ""
+        self.numberOfNewDeathsInLast24Hrs = 0
+        self.totalNumberOfTestsToDate = 0
+        self.date = ""
+        self.numberOfNewRecoveredCasesInLast24Hrs = 0
+        self.totalNumberOfRecoveredCasesToDate = 0
+        self.totalNumberOfPositiveCasesToDate = 0
     }
 }

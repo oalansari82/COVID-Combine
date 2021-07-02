@@ -40,73 +40,47 @@ class HomeViewModel: ObservableObject {
         case .numberOfNewPositiveCasesInLast24Hrs:
             if let yesterday = lastTwoDays?.first?.fields.numberOfNewPositiveCasesInLast24Hrs,
                let dayBeforeYesterday = lastTwoDays?.last?.fields.numberOfNewPositiveCasesInLast24Hrs {
-                if yesterday > dayBeforeYesterday {
-                    upOrDown = .up
-                } else if yesterday < dayBeforeYesterday {
-                    upOrDown = .down
-                } else {
-                    upOrDown = .equal
-                }
+                upOrDown = self.upOrDown(lhs: yesterday, rhs: dayBeforeYesterday)
             }
         case .totalNumberOfActiveCasesUndergoingTreatmentToDate:
             if let yesterday = lastTwoDays?.first?.fields.totalNumberOfActiveCasesUndergoingTreatmentToDate,
                let dayBeforeYesterday = lastTwoDays?.last?.fields.totalNumberOfActiveCasesUndergoingTreatmentToDate {
-                if yesterday > dayBeforeYesterday {
-                    upOrDown = .up
-                } else if yesterday < dayBeforeYesterday {
-                    upOrDown = .down
-                } else {
-                    upOrDown = .equal
-                }
+                upOrDown = self.upOrDown(lhs: yesterday, rhs: dayBeforeYesterday)
             }
         case .numberOfNewTestsInLast24Hrs:
             if let yesterday = lastTwoDays?.first?.fields.numberOfNewTestsInLast24Hrs,
                let dayBeforeYesterday = lastTwoDays?.last?.fields.numberOfNewTestsInLast24Hrs {
-                if yesterday > dayBeforeYesterday {
-                    upOrDown = .up
-                } else if yesterday < dayBeforeYesterday {
-                    upOrDown = .down
-                } else {
-                    upOrDown = .equal
-                }
+                upOrDown = self.upOrDown(lhs: yesterday, rhs: dayBeforeYesterday)
             }
         case .totalNumberOfAcuteCasesUnderHospitalTreatment:
             if let yesterday = lastTwoDays?.first?.fields.totalNumberOfAcuteCasesUnderHospitalTreatment,
                let dayBeforeYesterday = lastTwoDays?.last?.fields.totalNumberOfAcuteCasesUnderHospitalTreatment {
-                if yesterday > dayBeforeYesterday {
-                    upOrDown = .up
-                } else if yesterday < dayBeforeYesterday {
-                    upOrDown = .down
-                } else {
-                    upOrDown = .equal
-                }
+                upOrDown = self.upOrDown(lhs: yesterday, rhs: dayBeforeYesterday)
             }
         case .totalNumberOfCasesUnderIcuTreatment:
             if let yesterday = lastTwoDays?.first?.fields.totalNumberOfCasesUnderIcuTreatment,
                let dayBeforeYesterday = lastTwoDays?.last?.fields.totalNumberOfCasesUnderIcuTreatment {
-                if yesterday > dayBeforeYesterday {
-                    upOrDown = .up
-                } else if yesterday < dayBeforeYesterday {
-                    upOrDown = .down
-                } else {
-                    upOrDown = .equal
-                }
+                upOrDown = self.upOrDown(lhs: yesterday, rhs: dayBeforeYesterday)
             }
         case .numberOfNewDeathsInLast24Hrs:
             if let yesterday = lastTwoDays?.first?.fields.numberOfNewDeathsInLast24Hrs,
                let dayBeforeYesterday = lastTwoDays?.last?.fields.numberOfNewDeathsInLast24Hrs {
-                if yesterday > dayBeforeYesterday {
-                    upOrDown = .up
-                } else if yesterday < dayBeforeYesterday {
-                    upOrDown = .down
-                } else {
-                    upOrDown = .equal
-                }
+                upOrDown = self.upOrDown(lhs: yesterday, rhs: dayBeforeYesterday)
             }
         default:
             upOrDown = .none
         }
         
         return upOrDown
+    }
+    
+    private func upOrDown(lhs: Int, rhs: Int) -> UpOrDown {
+        if lhs > rhs {
+            return .up
+        } else if lhs < rhs {
+            return .down
+        } else {
+            return .equal
+        }
     }
 }
