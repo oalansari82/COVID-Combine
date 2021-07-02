@@ -21,13 +21,15 @@ class HomeViewModel: ObservableObject {
     
     func addSubscribers() {
         covidDataService.$allCovidData
-            .map { dataContainer ->  COVIDDataContainer.Records.Fields in
-                return dataContainer.records.first?.fields ?? COVIDDataContainer.Records.Fields()
-            }
+            .compactMap(getLatestDayData)
             .sink { [weak self] returnedLatestDay in
                 self?.latestDay = returnedLatestDay
             }
             .store(in: &cancellables)
+    }
+    
+    private func getLatestDayData(data: COVIDDataContainer) -> COVIDDataContainer.Records.Fields {
+        return data.records.first?.fields ?? COVIDDataContainer.Records.Fields()
     }
     
 }

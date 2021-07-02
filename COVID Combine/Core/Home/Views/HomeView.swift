@@ -17,16 +17,26 @@ struct HomeView: View {
     
     var body: some View {
         ScrollView {
-            Text(vm.latestDay.date)
+            Text((vm.latestDay.date ?? "").asAbbreviatedFormat())
                 .font(.caption)
                 .foregroundColor(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             
             LazyVGrid(columns: columns, alignment: .center, spacing: 10, content: {
-                ForEach(0..<10) { _ in
-                    StatItemView()
-                }
+                
+                StatItemView(number: Int(vm.latestDay.totalNumberOfVaccineDosesAdministeredSinceStart ?? ""), field: .totalNumberOfVaccineDosesAdministeredSinceStart)
+                
+                StatItemView(number: vm.latestDay.totalNumberOfVaccineDosesAdministeredInLast24Hrs, field: .totalNumberOfVaccineDosesAdministeredInLast24Hrs)
+                
+                StatItemView(number: vm.latestDay.totalNumberOfActiveCasesUndergoingTreatmentToDate, field: .totalNumberOfActiveCasesUndergoingTreatmentToDate)
+                
+                StatItemView(number: vm.latestDay.numberOfNewPositiveCasesInLast24Hrs, field: .numberOfNewPositiveCasesInLast24Hrs)
+                
+                StatItemView(number: vm.latestDay.totalNumberOfRecoveredCasesToDate, field: .totalNumberOfRecoveredCasesToDate)
+                
+                StatItemView(number: vm.latestDay.numberOfNewRecoveredCasesInLast24Hrs, field: .numberOfNewRecoveredCasesInLast24Hrs)
+                
             })
         }
         .navigationBarTitle("Latest Stats")
@@ -42,10 +52,13 @@ struct HomView_Previews: PreviewProvider {
 }
 
 struct StatItemView: View {
+    let number: Int?
+    let field: DataField
+    
     var body: some View {
         VStack(spacing: 10) {
             HStack {
-                Text("3,109,044")
+                Text("\(number ?? 0)")
                     .font(.title)
                     .bold()
                 Image(systemName: "arrow.up.circle.fill")
@@ -54,9 +67,9 @@ struct StatItemView: View {
             }
             
             VStack(spacing: 5) {
-                Text("Total Vaccine Given")
+                Text(field.englishTitle)
                     .multilineTextAlignment(.leading)
-                Text("إجمالي عدد اللقاحات التي تم إعطائها")
+                Text(field.arabicTitle)
                     .multilineTextAlignment(.trailing)
             }
             .font(.caption)
