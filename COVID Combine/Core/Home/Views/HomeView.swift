@@ -23,21 +23,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             
-            LazyVGrid(columns: columns, alignment: .center, spacing: 10, content: {
-                
-                StatItemView(number: Int(vm.latestDay.totalNumberOfVaccineDosesAdministeredSinceStart ?? ""), field: .totalNumberOfVaccineDosesAdministeredSinceStart)
-                
-                StatItemView(number: vm.latestDay.totalNumberOfVaccineDosesAdministeredInLast24Hrs, field: .totalNumberOfVaccineDosesAdministeredInLast24Hrs)
-                
-                StatItemView(number: vm.latestDay.totalNumberOfActiveCasesUndergoingTreatmentToDate, field: .totalNumberOfActiveCasesUndergoingTreatmentToDate)
-                
-                StatItemView(number: vm.latestDay.numberOfNewPositiveCasesInLast24Hrs, field: .numberOfNewPositiveCasesInLast24Hrs)
-                
-                StatItemView(number: vm.latestDay.totalNumberOfRecoveredCasesToDate, field: .totalNumberOfRecoveredCasesToDate)
-                
-                StatItemView(number: vm.latestDay.numberOfNewRecoveredCasesInLast24Hrs, field: .numberOfNewRecoveredCasesInLast24Hrs)
-                
-            })
+            stats
         }
         .navigationBarTitle("Latest Stats")
     }
@@ -51,32 +37,42 @@ struct HomView_Previews: PreviewProvider {
     }
 }
 
-struct StatItemView: View {
-    let number: Int?
-    let field: DataField
-    
-    var body: some View {
-        VStack(spacing: 10) {
-            HStack {
-                Text("\(number ?? 0)")
-                    .font(.title)
-                    .bold()
-                Image(systemName: "arrow.up.circle.fill")
-                    .font(.headline)
-                    .foregroundColor(.red)
+extension HomeView {
+    private var stats: some View {
+        LazyVGrid(columns: columns, alignment: .center, spacing: 10, content: {
+            Group {
+                Group {
+                    StatItemView(number: Int(vm.latestDay.totalNumberOfVaccineDosesAdministeredSinceStart ?? ""), field: .totalNumberOfVaccineDosesAdministeredSinceStart, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .totalNumberOfVaccineDosesAdministeredSinceStart), backgroundColor: Color.theme.maroon)
+                    
+                    StatItemView(number: vm.latestDay.totalNumberOfVaccineDosesAdministeredInLast24Hrs, field: .totalNumberOfVaccineDosesAdministeredInLast24Hrs, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .totalNumberOfVaccineDosesAdministeredInLast24Hrs), backgroundColor: Color.theme.maroon)
+                    
+                    StatItemView(number: vm.latestDay.totalNumberOfActiveCasesUndergoingTreatmentToDate, field: .totalNumberOfActiveCasesUndergoingTreatmentToDate, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .totalNumberOfActiveCasesUndergoingTreatmentToDate), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.numberOfNewPositiveCasesInLast24Hrs, field: .numberOfNewPositiveCasesInLast24Hrs, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .numberOfNewPositiveCasesInLast24Hrs), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.totalNumberOfRecoveredCasesToDate, field: .totalNumberOfRecoveredCasesToDate, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .totalNumberOfRecoveredCasesToDate), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.numberOfNewRecoveredCasesInLast24Hrs, field: .numberOfNewRecoveredCasesInLast24Hrs, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .numberOfNewRecoveredCasesInLast24Hrs), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.totalNumberOfTestsToDate, field: .totalNumberOfTestsToDate, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .totalNumberOfTestsToDate), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.numberOfNewTestsInLast24Hrs, field: .numberOfNewTestsInLast24Hrs, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .numberOfNewTestsInLast24Hrs), backgroundColor: nil)
+                }
+                
+                Group {
+                    StatItemView(number: vm.latestDay.totalNumberOfAcuteCasesUnderHospitalTreatment, field: .totalNumberOfAcuteCasesUnderHospitalTreatment, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .totalNumberOfAcuteCasesUnderHospitalTreatment), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.numberOfNewAcuteHospitalAdmissionsInLast24Hrs, field: .numberOfNewAcuteHospitalAdmissionsInLast24Hrs, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .numberOfNewAcuteHospitalAdmissionsInLast24Hrs), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.totalNumberOfCasesUnderIcuTreatment, field: .totalNumberOfCasesUnderIcuTreatment, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .totalNumberOfCasesUnderIcuTreatment), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.numberOfNewIcuAdmissionsInLast24Hrs, field: .numberOfNewIcuAdmissionsInLast24Hrs, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .numberOfNewIcuAdmissionsInLast24Hrs), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.totalNumberOfDeathsToDate, field: .totalNumberOfDeathsToDate, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .totalNumberOfDeathsToDate), backgroundColor: nil)
+                    
+                    StatItemView(number: vm.latestDay.numberOfNewDeathsInLast24Hrs, field: .numberOfNewDeathsInLast24Hrs, upOrDown: vm.checkIfNumberIsIncreasing(dataField: .numberOfNewDeathsInLast24Hrs), backgroundColor: nil)
+                }
             }
-            
-            VStack(spacing: 5) {
-                Text(field.englishTitle)
-                    .multilineTextAlignment(.leading)
-                Text(field.arabicTitle)
-                    .multilineTextAlignment(.trailing)
-            }
-            .font(.caption)
-            .foregroundColor(.secondary)
-        }
-        .padding(.vertical)
-        .frame(maxWidth: .infinity)
-        
+        })
     }
 }
