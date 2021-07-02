@@ -26,6 +26,11 @@ struct HomeView: View {
             stats
         }
         .navigationBarTitle("Latest Stats")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                toolbarButton
+            }
+        }
     }
 }
 
@@ -38,6 +43,15 @@ struct HomView_Previews: PreviewProvider {
 }
 
 extension HomeView {
+    private var toolbarButton: some View {
+        Button(action: {
+            vm.reloadData()
+        }, label: {
+            Image(systemName: "arrow.triangle.2.circlepath")
+                .rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0), anchor: .center)
+                .animation(.linear(duration: 1))
+        })
+    }
     private var stats: some View {
         LazyVGrid(columns: columns, alignment: .center, spacing: 10, content: {
             Group {

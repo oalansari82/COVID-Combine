@@ -11,6 +11,7 @@ import Combine
 class HomeViewModel: ObservableObject {
     
     @Published var latestDay = COVIDDataContainer.Records.Fields()
+    @Published var isLoading: Bool = false
     private let covidDataService = CovidLastTwoDaysDataService()
     
     private var lastTwoDays: [COVIDDataContainer.Records]?
@@ -25,12 +26,18 @@ class HomeViewModel: ObservableObject {
             .sink { [weak self] returnedLatestDay in
                 self?.latestDay = self?.getLatestDayData(data: returnedLatestDay) ?? COVIDDataContainer.Records.Fields()
                 self?.lastTwoDays = returnedLatestDay.records
+                self?.isLoading = false
             }
             .store(in: &cancellables)
     }
     
     private func getLatestDayData(data: COVIDDataContainer) -> COVIDDataContainer.Records.Fields {
         return data.records.first?.fields ?? COVIDDataContainer.Records.Fields()
+    }
+    
+    func reloadData() {
+        isLoading = true
+        covidDataService.getData()
     }
     
     func checkIfNumberIsIncreasing(dataField: DataField) -> UpOrDown {

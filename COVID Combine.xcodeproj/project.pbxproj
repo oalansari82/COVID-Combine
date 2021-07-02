@@ -3,12 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		074ED56A268F0397003483AD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED569268F0397003483AD /* String+Extension.swift */; };
 		074ED56C268F0D84003483AD /* DataFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED56B268F0D84003483AD /* DataFields.swift */; };
+		074ED56E268FC3D0003483AD /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED56D268FC3D0003483AD /* AppNavigation.swift */; };
+		074ED571268FC48A003483AD /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 074ED570268FC48A003483AD /* SwiftUICharts */; };
+		074ED575268FC635003483AD /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED574268FC635003483AD /* ChartView.swift */; };
+		074ED578268FC6DB003483AD /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED577268FC6DB003483AD /* ChartViewModel.swift */; };
+		074ED57A268FC71B003483AD /* ChartDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED579268FC71B003483AD /* ChartDataService.swift */; };
 		85800653268FA62800282BE2 /* StatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85800652268FA62800282BE2 /* StatItemView.swift */; };
 		85800655268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85800654268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift */; };
 		85800657268FAD6100282BE2 /* UpOrDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85800656268FAD6100282BE2 /* UpOrDown.swift */; };
@@ -28,6 +33,10 @@
 /* Begin PBXFileReference section */
 		074ED569268F0397003483AD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		074ED56B268F0D84003483AD /* DataFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFields.swift; sourceTree = "<group>"; };
+		074ED56D268FC3D0003483AD /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
+		074ED574268FC635003483AD /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		074ED577268FC6DB003483AD /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		074ED579268FC71B003483AD /* ChartDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataService.swift; sourceTree = "<group>"; };
 		85800652268FA62800282BE2 /* StatItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItemView.swift; sourceTree = "<group>"; };
 		85800654268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidLastTwoDaysDataService.swift; sourceTree = "<group>"; };
 		85800656268FAD6100282BE2 /* UpOrDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpOrDown.swift; sourceTree = "<group>"; };
@@ -51,12 +60,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				074ED571268FC48A003483AD /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		074ED572268FC61B003483AD /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				074ED576268FC6CF003483AD /* ViewModels */,
+				074ED573268FC62C003483AD /* Views */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		074ED573268FC62C003483AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				074ED574268FC635003483AD /* ChartView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		074ED576268FC6CF003483AD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				074ED577268FC6DB003483AD /* ChartViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		85800650268FA60C00282BE2 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				85DB65EA268EC4ED0078A4AF /* COVID_CombineApp.swift */,
+				074ED56D268FC3D0003483AD /* AppNavigation.swift */,
 				85DB6607268ECE300078A4AF /* Utilities */,
 				85DB6604268ECD580078A4AF /* Services */,
 				85DB6601268ECCE80078A4AF /* Models */,
@@ -129,6 +165,7 @@
 			children = (
 				85800650268FA60C00282BE2 /* Components */,
 				85DB65FF268EC7D20078A4AF /* Home */,
+				074ED572268FC61B003483AD /* Chart */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -164,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				85DB6605268ECD890078A4AF /* CovidDataService.swift */,
+				074ED579268FC71B003483AD /* ChartDataService.swift */,
 				85800654268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift */,
 			);
 			path = Services;
@@ -201,6 +239,9 @@
 			dependencies = (
 			);
 			name = "COVID Combine";
+			packageProductDependencies = (
+				074ED570268FC48A003483AD /* SwiftUICharts */,
+			);
 			productName = "COVID Combine";
 			productReference = 85DB65E7268EC4ED0078A4AF /* COVID Combine.app */;
 			productType = "com.apple.product-type.application";
@@ -228,6 +269,9 @@
 				Base,
 			);
 			mainGroup = 85DB65DE268EC4ED0078A4AF;
+			packageReferences = (
+				074ED56F268FC48A003483AD /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+			);
 			productRefGroup = 85DB65E8268EC4ED0078A4AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -254,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				074ED578268FC6DB003483AD /* ChartViewModel.swift in Sources */,
 				85DB65FA268EC54B0078A4AF /* HomeView.swift in Sources */,
 				074ED56A268F0397003483AD /* String+Extension.swift in Sources */,
 				074ED56C268F0D84003483AD /* DataFields.swift in Sources */,
@@ -261,11 +306,14 @@
 				85DB660C268ECFAD0078A4AF /* HomeViewModel.swift in Sources */,
 				85DB6606268ECD890078A4AF /* CovidDataService.swift in Sources */,
 				85800657268FAD6100282BE2 /* UpOrDown.swift in Sources */,
+				074ED575268FC635003483AD /* ChartView.swift in Sources */,
 				85DB6609268ECE3E0078A4AF /* NetworkingManager.swift in Sources */,
 				85DB660E268ED1780078A4AF /* Date+Extension.swift in Sources */,
 				85DB65EB268EC4ED0078A4AF /* COVID_CombineApp.swift in Sources */,
 				85800655268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift in Sources */,
 				85800659268FB6DF00282BE2 /* PreviewProvider+Extension.swift in Sources */,
+				074ED57A268FC71B003483AD /* ChartDataService.swift in Sources */,
+				074ED56E268FC3D0003483AD /* AppNavigation.swift in Sources */,
 				85800653268FA62800282BE2 /* StatItemView.swift in Sources */,
 				85DB65FD268EC5710078A4AF /* ColorExtension.swift in Sources */,
 			);
@@ -456,6 +504,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		074ED56F268FC48A003483AD /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/willdale/SwiftUICharts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		074ED570268FC48A003483AD /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 074ED56F268FC48A003483AD /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 85DB65DF268EC4ED0078A4AF /* Project object */;
 }
