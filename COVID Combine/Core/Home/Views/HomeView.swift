@@ -25,6 +25,7 @@ struct HomeView: View {
                     .padding(.horizontal)
                 
                 stats
+                    .redacted(reason: vm.isLoading ? .placeholder : [])
             }
             
             if vm.isLoading {

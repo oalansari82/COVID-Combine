@@ -16,6 +16,7 @@ struct AppNavigation: View {
                     .tabItem {
                         Label("Home", systemImage: "house")
                 }
+            .navigationViewStyle(StackNavigationViewStyle())
             
             NavigationView {
                 ChartView()
@@ -23,6 +24,7 @@ struct AppNavigation: View {
             .tabItem {
                 Label("Chart", systemImage: "chart.bar")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             
             NavigationView {
                 HistoricalView()
@@ -30,6 +32,7 @@ struct AppNavigation: View {
             .tabItem {
                 Label("Archive", systemImage: "clock")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

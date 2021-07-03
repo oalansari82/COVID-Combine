@@ -83,7 +83,7 @@ enum DataField: String, CaseIterable {
         case .numberOfNewIcuAdmissionsInLast24Hrs:
             return "الحالات التي دخلت العناية المركزة خلال ٢٤ ساعة"
         case .totalNumberOfVaccineDosesAdministeredSinceStart:
-            return "إجمالي عدد اللقاحات التي تم إعطائها"
+            return "إجمالي اللقاحات التي تم إعطائها"
         case .numberOfNewDeathsInLast24Hrs:
             return "الوفيات خلال ٢٤ ساعة"
         case .totalNumberOfTestsToDate:

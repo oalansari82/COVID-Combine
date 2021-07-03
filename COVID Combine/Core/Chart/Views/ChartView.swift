@@ -18,6 +18,7 @@ struct ChartView: View {
                 ScrollView {
                     chart
                     stats
+                        .redacted(reason: vm.isLoading ? .placeholder : [])
                 }
                 pickerView
             }
@@ -36,13 +37,8 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        TabView {
-            NavigationView {
-                ChartView()
-            }
-            .tabItem {
-                Label("Chart", systemImage: "chart.bar")
-            }
+        NavigationView {
+            ChartView()
         }
     }
 }

@@ -65,10 +65,7 @@ class DeveloperPreview {
                 totalNumberOfPositiveCasesToDate: 221810),
             recordTimestamp: "2021-06-29T14:28:06.984000+00:00")
         
-    ])
-    
-    
-    
+    ]) 
 }
 
 
