@@ -34,7 +34,7 @@ struct HistoricalRowView: View {
     let record: COVIDDataContainer.Records.Fields
     
     var body: some View {
-        VStack {
+        LazyVStack {
             HStack {
                 HStack(alignment: .top) {
                     Text((record.date ?? "").asAbbreviatedFormat())

@@ -69,7 +69,7 @@ extension ChartView {
                 VStack {
                     Text("\(vm.minPoint)")
                         .font(.title)
-                    Text("Mind أقل")
+                    Text("Min أقل")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
