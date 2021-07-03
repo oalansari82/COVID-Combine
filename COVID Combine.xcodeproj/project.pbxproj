@@ -13,7 +13,6 @@
 		074ED571268FC48A003483AD /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 074ED570268FC48A003483AD /* SwiftUICharts */; };
 		074ED575268FC635003483AD /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED574268FC635003483AD /* ChartView.swift */; };
 		074ED578268FC6DB003483AD /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED577268FC6DB003483AD /* ChartViewModel.swift */; };
-		074ED57A268FC71B003483AD /* ChartDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074ED579268FC71B003483AD /* ChartDataService.swift */; };
 		85800653268FA62800282BE2 /* StatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85800652268FA62800282BE2 /* StatItemView.swift */; };
 		85800655268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85800654268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift */; };
 		85800657268FAD6100282BE2 /* UpOrDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85800656268FAD6100282BE2 /* UpOrDown.swift */; };
@@ -39,7 +38,6 @@
 		074ED56D268FC3D0003483AD /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
 		074ED574268FC635003483AD /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		074ED577268FC6DB003483AD /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
-		074ED579268FC71B003483AD /* ChartDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataService.swift; sourceTree = "<group>"; };
 		85800652268FA62800282BE2 /* StatItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItemView.swift; sourceTree = "<group>"; };
 		85800654268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidLastTwoDaysDataService.swift; sourceTree = "<group>"; };
 		85800656268FAD6100282BE2 /* UpOrDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpOrDown.swift; sourceTree = "<group>"; };
@@ -209,7 +207,6 @@
 			children = (
 				85DB6605268ECD890078A4AF /* CovidDataService.swift */,
 				85800654268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift */,
-				074ED579268FC71B003483AD /* ChartDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -347,7 +344,6 @@
 				85800655268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift in Sources */,
 				85E8CEBC2690303E00842878 /* HistoricalViewModel.swift in Sources */,
 				85800659268FB6DF00282BE2 /* PreviewProvider+Extension.swift in Sources */,
-				074ED57A268FC71B003483AD /* ChartDataService.swift in Sources */,
 				074ED56E268FC3D0003483AD /* AppNavigation.swift in Sources */,
 				85800653268FA62800282BE2 /* StatItemView.swift in Sources */,
 				85E8CEBE269082CF00842878 /* HistoricalDetail.swift in Sources */,

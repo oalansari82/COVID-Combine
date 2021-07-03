@@ -21,7 +21,7 @@ class ChartViewModel: ObservableObject {
     private var allData: COVIDDataContainer = COVIDDataContainer(records: [])
     @Published var filteredData: [COVIDDataContainer.Records] = []
     
-    private var chartDataService: CovidDataService = CovidDataService()
+    private var covidDataService: CovidDataService = CovidDataService()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -30,7 +30,7 @@ class ChartViewModel: ObservableObject {
     }
     
     private func addSubscribers() {
-        chartDataService.$allCovidData
+        covidDataService.$allCovidData
             .sink { [weak self] returnedData in
                 self?.allData = returnedData
                 self?.filterData()
