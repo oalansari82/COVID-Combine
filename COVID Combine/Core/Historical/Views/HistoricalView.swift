@@ -15,7 +15,11 @@ struct HistoricalView: View {
             ZStack {
                 List {
                     ForEach(vm.allData.records, id:\.recordid) { record in
-                        HistoricalRowView(record: record.fields)
+                        NavigationLink(
+                            destination: HistoricalDetail(item: record.fields)) {
+                            HistoricalRowView(record: record.fields)
+                        }
+                        
                     }
                 }
                 if vm.isLoading {

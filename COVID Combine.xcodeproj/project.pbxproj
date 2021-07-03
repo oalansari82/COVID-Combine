@@ -30,6 +30,7 @@
 		85DB660E268ED1780078A4AF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DB660D268ED1780078A4AF /* Date+Extension.swift */; };
 		85E8CEBA2690302500842878 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CEB92690302500842878 /* HistoricalView.swift */; };
 		85E8CEBC2690303E00842878 /* HistoricalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CEBB2690303E00842878 /* HistoricalViewModel.swift */; };
+		85E8CEBE269082CF00842878 /* HistoricalDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CEBD269082CF00842878 /* HistoricalDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		85DB660D268ED1780078A4AF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		85E8CEB92690302500842878 /* HistoricalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalView.swift; sourceTree = "<group>"; };
 		85E8CEBB2690303E00842878 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
+		85E8CEBD269082CF00842878 /* HistoricalDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				85E8CEB92690302500842878 /* HistoricalView.swift */,
+				85E8CEBD269082CF00842878 /* HistoricalDetail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				074ED57A268FC71B003483AD /* ChartDataService.swift in Sources */,
 				074ED56E268FC3D0003483AD /* AppNavigation.swift in Sources */,
 				85800653268FA62800282BE2 /* StatItemView.swift in Sources */,
+				85E8CEBE269082CF00842878 /* HistoricalDetail.swift in Sources */,
 				85DB65FD268EC5710078A4AF /* ColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
