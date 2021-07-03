@@ -16,11 +16,19 @@ struct AppNavigation: View {
                     .tabItem {
                         Label("Home", systemImage: "house")
                 }
+            
             NavigationView {
                 ChartView()
             }
             .tabItem {
                 Label("Chart", systemImage: "chart.bar")
+            }
+            
+            NavigationView {
+                HistoricalView()
+            }
+            .tabItem {
+                Label("Archive", systemImage: "clock")
             }
         }
     }

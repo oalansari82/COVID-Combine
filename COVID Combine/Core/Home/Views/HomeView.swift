@@ -16,14 +16,20 @@ struct HomeView: View {
     @StateObject var vm = HomeViewModel()
     
     var body: some View {
-        ScrollView {
-            Text((vm.latestDay.date ?? "").asAbbreviatedFormat())
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
+        ZStack {
+            ScrollView {
+                Text((vm.latestDay.date ?? "").asAbbreviatedFormat())
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                
+                stats
+            }
             
-            stats
+            if vm.isLoading {
+                ProgressView()
+            }
         }
         .navigationBarTitle("Latest Stats")
         .toolbar {

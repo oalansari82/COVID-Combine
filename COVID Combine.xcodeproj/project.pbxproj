@@ -28,6 +28,8 @@
 		85DB6609268ECE3E0078A4AF /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DB6608268ECE3E0078A4AF /* NetworkingManager.swift */; };
 		85DB660C268ECFAD0078A4AF /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DB660B268ECFAD0078A4AF /* HomeViewModel.swift */; };
 		85DB660E268ED1780078A4AF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DB660D268ED1780078A4AF /* Date+Extension.swift */; };
+		85E8CEBA2690302500842878 /* HistoricalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CEB92690302500842878 /* HistoricalView.swift */; };
+		85E8CEBC2690303E00842878 /* HistoricalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E8CEBB2690303E00842878 /* HistoricalViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,8 @@
 		85DB6608268ECE3E0078A4AF /* NetworkingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		85DB660B268ECFAD0078A4AF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		85DB660D268ED1780078A4AF /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		85E8CEB92690302500842878 /* HistoricalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalView.swift; sourceTree = "<group>"; };
+		85E8CEBB2690303E00842878 /* HistoricalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +74,8 @@
 		074ED572268FC61B003483AD /* Chart */ = {
 			isa = PBXGroup;
 			children = (
-				074ED576268FC6CF003483AD /* ViewModels */,
 				074ED573268FC62C003483AD /* Views */,
+				074ED576268FC6CF003483AD /* ViewModels */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -166,6 +170,7 @@
 				85800650268FA60C00282BE2 /* Components */,
 				85DB65FF268EC7D20078A4AF /* Home */,
 				074ED572268FC61B003483AD /* Chart */,
+				85E8CEB526902FED00842878 /* Historical */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -173,8 +178,8 @@
 		85DB65FF268EC7D20078A4AF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				85DB660A268ECF990078A4AF /* ViewModels */,
 				85DB6600268EC7D70078A4AF /* Views */,
+				85DB660A268ECF990078A4AF /* ViewModels */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -201,8 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				85DB6605268ECD890078A4AF /* CovidDataService.swift */,
-				074ED579268FC71B003483AD /* ChartDataService.swift */,
 				85800654268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift */,
+				074ED579268FC71B003483AD /* ChartDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -219,6 +224,31 @@
 			isa = PBXGroup;
 			children = (
 				85DB660B268ECFAD0078A4AF /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		85E8CEB526902FED00842878 /* Historical */ = {
+			isa = PBXGroup;
+			children = (
+				85E8CEB62690300600842878 /* Views */,
+				85E8CEB82690301200842878 /* ViewModels */,
+			);
+			path = Historical;
+			sourceTree = "<group>";
+		};
+		85E8CEB62690300600842878 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				85E8CEB92690302500842878 /* HistoricalView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		85E8CEB82690301200842878 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				85E8CEBB2690303E00842878 /* HistoricalViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -302,6 +332,7 @@
 				85DB65FA268EC54B0078A4AF /* HomeView.swift in Sources */,
 				074ED56A268F0397003483AD /* String+Extension.swift in Sources */,
 				074ED56C268F0D84003483AD /* DataFields.swift in Sources */,
+				85E8CEBA2690302500842878 /* HistoricalView.swift in Sources */,
 				85DB6603268ECD0D0078A4AF /* COVIDDataContainer.swift in Sources */,
 				85DB660C268ECFAD0078A4AF /* HomeViewModel.swift in Sources */,
 				85DB6606268ECD890078A4AF /* CovidDataService.swift in Sources */,
@@ -311,6 +342,7 @@
 				85DB660E268ED1780078A4AF /* Date+Extension.swift in Sources */,
 				85DB65EB268EC4ED0078A4AF /* COVID_CombineApp.swift in Sources */,
 				85800655268FA6DD00282BE2 /* CovidLastTwoDaysDataService.swift in Sources */,
+				85E8CEBC2690303E00842878 /* HistoricalViewModel.swift in Sources */,
 				85800659268FB6DF00282BE2 /* PreviewProvider+Extension.swift in Sources */,
 				074ED57A268FC71B003483AD /* ChartDataService.swift in Sources */,
 				074ED56E268FC3D0003483AD /* AppNavigation.swift in Sources */,

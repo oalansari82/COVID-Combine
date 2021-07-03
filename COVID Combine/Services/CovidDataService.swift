@@ -19,7 +19,7 @@ class CovidDataService {
     }
     
     func getData() {
-        guard let url = URL(string: "https://www.data.gov.qa/api/records/1.0/search/?dataset=covid-19-cases-in-qatar&q=&lang=en&rows=90&sort=date&facet=date") else { return }
+        guard let url = URL(string: "https://www.data.gov.qa/api/records/1.0/search/?dataset=covid-19-cases-in-qatar&q=&lang=en&rows=-1&sort=date&facet=date") else { return }
         
         dataSubscription = NetworkingManager.download(url: url)
             .decode(type: COVIDDataContainer.self, decoder: JSONDecoder())
