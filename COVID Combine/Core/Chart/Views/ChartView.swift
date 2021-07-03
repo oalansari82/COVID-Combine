@@ -13,12 +13,17 @@ struct ChartView: View {
     @StateObject var vm: ChartViewModel = ChartViewModel()
     
     var body: some View {
-        VStack {
-            ScrollView {
-                chart
-                stats
+        ZStack {
+            VStack {
+                ScrollView {
+                    chart
+                    stats
+                }
+                pickerView
             }
-            pickerView
+            if vm.isLoading  {
+                ProgressView()
+            }
         }
         .navigationTitle("Chart")
         .toolbar {
@@ -31,24 +36,29 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            ChartView()
+        TabView {
+            NavigationView {
+                ChartView()
+            }
+            .tabItem {
+                Label("Chart", systemImage: "chart.bar")
+            }
         }
     }
 }
 
 extension ChartView {
     private var chart: some View {
-        FilledLineChart(chartData: vm.getChart(numberOfDays: vm.numberOfDays))
-            .touchOverlay(chartData: vm.getChart(numberOfDays: vm.numberOfDays), specifier: "%.0f")
-            .averageLine(chartData: vm.getChart(numberOfDays: vm.numberOfDays),strokeStyle: StrokeStyle(lineWidth: 1, dash: [5,10]))
-            .yAxisGrid(chartData: vm.getChart(numberOfDays: vm.numberOfDays))
-            .yAxisLabels(chartData: vm.getChart(numberOfDays: vm.numberOfDays))
-            .infoBox(chartData: vm.getChart(numberOfDays: vm.numberOfDays))
-            .floatingInfoBox(chartData: vm.getChart(numberOfDays: vm.numberOfDays))
-            .headerBox(chartData: vm.getChart(numberOfDays: vm.numberOfDays))
-            .legends(chartData: vm.getChart(numberOfDays: vm.numberOfDays), columns: [GridItem(.flexible()), GridItem(.flexible())])
-            .id(vm.getChart(numberOfDays: vm.numberOfDays).id)
+        FilledLineChart(chartData: vm.getChart())
+            .touchOverlay(chartData: vm.getChart(), specifier: "%.0f")
+            .averageLine(chartData: vm.getChart(),strokeStyle: StrokeStyle(lineWidth: 1, dash: [5,10]))
+            .yAxisGrid(chartData: vm.getChart())
+            .yAxisLabels(chartData: vm.getChart())
+            .infoBox(chartData: vm.getChart())
+            .floatingInfoBox(chartData: vm.getChart())
+            .headerBox(chartData: vm.getChart())
+            .legends(chartData: vm.getChart(), columns: [GridItem(.flexible())])
+            .id(vm.getChart().id)
             .frame(minWidth: 150, maxWidth: 900, minHeight: 300, idealHeight: 350, maxHeight: 400, alignment: .center)
             .padding()
     }
@@ -61,39 +71,41 @@ extension ChartView {
                         Text(vm.dataField.arabicTitle)
                             .multilineTextAlignment(.trailing)
                     }
-                    .font(.subheadline)
-                    
+                    .font(.caption)
         ) {
             HStack {
                 Spacer()
-                VStack {
-                    Text("\(vm.minPoint)")
-                        .font(.title)
-                    Text("Min أقل")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
+                stat("Min أقل", value: vm.minPoint)
                 Spacer()
-                VStack {
-                    Text("\(vm.maxPoint)")
-                        .font(.title)
-                    Text("Max أكثر")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
+                stat("Max أكثر", value: vm.maxPoint)
                 Spacer()
-                VStack {
-                    Text("\(vm.latestPoint)")
-                        .font(.title)
-                    Text("Latest الأحدث")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
+                stat("Latest الأحدث", value: vm.latestPoint)
                 Spacer()
             }
             .padding(.vertical, 10)
         }
         .padding(.horizontal)
+    }
+    
+    private func stat(_ text: String, value: Int) -> VStack<TupleView<(Text, Text)>> {
+        return VStack {
+            Text("\(value)")
+                .font(.title)
+            Text("\(text)")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+    }
+    
+    private func statValue(_ value: Int) -> Text {
+        return Text("\(value)")
+            .font(.title)
+    }
+    
+    private func statLabel(_ text: String) -> Text {
+        return Text(text)
+            .font(.caption)
+            .foregroundColor(.secondary)
     }
     
     private var pickerView: some View {
@@ -106,34 +118,45 @@ extension ChartView {
         .padding([.bottom, .horizontal])
         .padding(.bottom, 10)
         .onChange(of: vm.numberOfDays) { (_) in
-            vm.reloadData()
+            vm.filterData()
         }
     }
     
     private var toolbarMenu: some View {
         Menu {
             Button("Positive Cases") {
-                vm.dataField = .numberOfNewPositiveCasesInLast24Hrs
-                vm.getStats()
+                withAnimation(.linear) {
+                    vm.dataField = .numberOfNewPositiveCasesInLast24Hrs
+                    vm.getStats()
+                }
             }
             Button("Death Cases") {
-                vm.dataField = .numberOfNewDeathsInLast24Hrs
-                vm.getStats()
+                withAnimation(.linear) {
+                    vm.dataField = .numberOfNewDeathsInLast24Hrs
+                    vm.getStats()
+                }
             }
             Button("Current ICU Cases") {
-                vm.dataField = .totalNumberOfCasesUnderIcuTreatment
-                vm.getStats()
+                withAnimation(.linear) {
+                    vm.dataField = .totalNumberOfCasesUnderIcuTreatment
+                    vm.getStats()
+                }
             }
             Button("Current Active") {
-                vm.dataField = .totalNumberOfActiveCasesUndergoingTreatmentToDate
-                vm.getStats()
+                withAnimation(.linear) {
+                    vm.dataField = .totalNumberOfActiveCasesUndergoingTreatmentToDate
+                    vm.getStats()
+                }
             }
             Button("Current Hospitalized") {
-                vm.dataField = .totalNumberOfAcuteCasesUnderHospitalTreatment
-                vm.getStats()
+                withAnimation(.linear) {
+                    vm.dataField = .totalNumberOfAcuteCasesUnderHospitalTreatment
+                    vm.getStats()
+                }
             }
         } label: {
             Image(systemName: "slider.horizontal.3")
+                .font(.title3)
         }
     }
 }

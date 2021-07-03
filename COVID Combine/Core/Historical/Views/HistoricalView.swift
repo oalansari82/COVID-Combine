@@ -12,9 +12,14 @@ struct HistoricalView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(vm.allData.records, id:\.recordid) { record in
-                    HistoricalRowView(record: record.fields)
+            ZStack {
+                List {
+                    ForEach(vm.allData.records, id:\.recordid) { record in
+                        HistoricalRowView(record: record.fields)
+                    }
+                }
+                if vm.isLoading {
+                    ProgressView()
                 }
             }
         }

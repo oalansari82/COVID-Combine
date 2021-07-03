@@ -16,27 +16,40 @@ class ChartViewModel: ObservableObject {
     @Published var minPoint = 0
     @Published var maxPoint = 0
     @Published var latestPoint = 0
+    @Published var isLoading: Bool = false
     
-    @Published var allData: COVIDDataContainer = COVIDDataContainer(records: [])
+    private var allData: COVIDDataContainer = COVIDDataContainer(records: [])
+    @Published var filteredData: [COVIDDataContainer.Records] = []
     
-    private var chartDataService: ChartDataService = ChartDataService(numberOfDays: 30)
+    private var chartDataService: CovidDataService = CovidDataService()
     private var cancellables = Set<AnyCancellable>()
     
     init() {
+        isLoading = true
         addSubscribers()
-    }
-    
-    func reloadData() {
-        chartDataService.getData(numberOfDays: self.numberOfDays)
     }
     
     private func addSubscribers() {
         chartDataService.$allCovidData
             .sink { [weak self] returnedData in
                 self?.allData = returnedData
+                self?.filterData()
                 self?.getStats()
+                if !returnedData.records.isEmpty {
+                    self?.isLoading = false                    
+                }
             }
             .store(in: &cancellables)
+    }
+    
+    func filterData() {
+        if numberOfDays == -1 {
+            self.filteredData = allData.records
+        } else {
+            let slice = allData.records.prefix(numberOfDays)
+            filteredData = Array(slice)
+        }
+        self.getStats()
     }
     
     
@@ -44,23 +57,23 @@ class ChartViewModel: ObservableObject {
         var numbers: [Int] = []
         switch dataField {
         case .numberOfNewPositiveCasesInLast24Hrs:
-            allData.records.forEach { record in
+            filteredData.forEach { record in
                 numbers.append(record.fields.numberOfNewPositiveCasesInLast24Hrs ?? 0)
             }
         case .numberOfNewDeathsInLast24Hrs:
-            allData.records.forEach { record in
+            filteredData.forEach { record in
                 numbers.append(record.fields.numberOfNewDeathsInLast24Hrs ?? 0)
             }
         case .totalNumberOfCasesUnderIcuTreatment:
-            allData.records.forEach { record in
+            filteredData.forEach { record in
                 numbers.append(record.fields.totalNumberOfCasesUnderIcuTreatment ?? 0)
             }
         case .totalNumberOfActiveCasesUndergoingTreatmentToDate:
-            allData.records.forEach { record in
+            filteredData.forEach { record in
                 numbers.append(record.fields.totalNumberOfActiveCasesUndergoingTreatmentToDate ?? 0)
             }
         case .totalNumberOfAcuteCasesUnderHospitalTreatment:
-            allData.records.forEach { record in
+            filteredData.forEach { record in
                 numbers.append(record.fields.totalNumberOfAcuteCasesUnderHospitalTreatment ?? 0)
             }
         default:
@@ -71,7 +84,7 @@ class ChartViewModel: ObservableObject {
         latestPoint = numbers.first ?? 0
     }
     
-    func getChart(numberOfDays: Int) -> LineChartData {
+    func getChart() -> LineChartData {
         var data = LineDataSet(
             dataPoints: [],
             legendTitle: "",
@@ -80,7 +93,7 @@ class ChartViewModel: ObservableObject {
 
         var dataPoint = LineChartDataPoint(value: 0)
         
-        for day in allData.records {
+        for day in filteredData {
             let value = getChartDataPoints(for: day, dataField: dataField)
             dataPoint = LineChartDataPoint(value: value, xAxisLabel: day.fields.date, description: day.fields.date)
             data.legendTitle = dataField.englishTitle
@@ -128,11 +141,12 @@ class ChartViewModel: ObservableObject {
                               infoBoxBorderColour : Color.primary,
                               infoBoxBorderStyle  : StrokeStyle(lineWidth: 0.5),
                               
-                              markerType          : .vertical(attachment: .line(dot: .style(DotStyle()))),
+                              markerType          : .indicator(style: DotStyle(size: 10, fillColour: Color.theme.maroon, lineColour: .clear, lineWidth: 0)),
                                                             
                               baseline            : .minimumWithMaximum(of: 0),
                               
-                              globalAnimation     : .easeOut(duration: 1))
+                              globalAnimation     : .easeInOut(duration: 0.5)
+        )
     }
     
     private func lineStyle() -> LineStyle {

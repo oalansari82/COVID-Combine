@@ -27,7 +27,9 @@ class HomeViewModel: ObservableObject {
             .sink { [weak self] returnedLatestDay in
                 self?.latestDay = self?.getLatestDayData(data: returnedLatestDay) ?? COVIDDataContainer.Records.Fields()
                 self?.lastTwoDays = returnedLatestDay.records
-                self?.isLoading = false
+                if !returnedLatestDay.records.isEmpty {
+                    self?.isLoading = false
+                }
             }
             .store(in: &cancellables)
     }
